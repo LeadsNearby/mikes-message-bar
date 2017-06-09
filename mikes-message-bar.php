@@ -3,11 +3,17 @@
 Plugin URI: http://leadsnearby.com/
 Description: Creates the most amazing fixed message bar in the world without slowing down your site.
 
-Version: 1.0
+Version: 1.0.0
 Author: Michael Layao
 Author URI: http://leadsnearby.com/
 License: GPLv2 or later
 */
+
+require_once( plugin_dir_path( __FILE__ ) . '/updater/github-updater.php' );
+
+if ( is_admin() ) {
+    new GitHubPluginUpdater( __FILE__, 'LeadsNearby', "mikes-message-bar" );
+}
 
 //Enqueue CSS
 function load_custom_wp_admin_style($hook) {
