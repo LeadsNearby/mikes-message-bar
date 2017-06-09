@@ -70,7 +70,8 @@ $panel->createOption( array(
 		'name' => 'Message Bar Left Headline',
 		'id' => 'message_bar_left_headline',
 		'type' => 'text',
-		'desc' => 'Your Call to Action'		
+		'desc' => 'Your Call to Action',
+		'default' => '(919)758-8420'		
 		) );
 	$panel->createOption( array(
 		'name' => 'Message Bar Left Headline Color',
@@ -96,7 +97,8 @@ $panel->createOption( array(
 		'name' => 'Message Bar Middle Headline',
 		'id' => 'message_bar_middle_headline',
 		'type' => 'text',
-		'desc' => 'Your Call to Action'
+		'desc' => 'Your Call to Action',
+		'default' => 'Schedule Now'
 		
 		) );
 	$panel->createOption( array(
@@ -123,7 +125,8 @@ $panel->createOption( array(
 		'name' => 'Message Bar Right Headline',
 		'id' => 'message_bar_right_headline',
 		'type' => 'text',
-		'desc' => 'Your Call to Action'
+		'desc' => 'Your Call to Action',
+		'default' => 'Reviews'
 		
 		) );
 	$panel->createOption( array(
@@ -188,6 +191,13 @@ if( wp_get_attachment_url( $lefticon ) ) {
 	$lefticon = plugins_url('/assets/img/svg-bar-call.svg', __FILE__);
 	}
 $leftlink = $mikesbar->getOption( 'left_container_link' );
+if( $leftlink ) {
+	$leftlink_output = 'href="'.$leftlink.'"';
+	} else {
+	$leftlink_output = "onclick='event.preventDefault()'";	
+	}
+
+
 //Middle Options
 $middleheadline = $mikesbar->getOption( 'message_bar_middle_headline' );
 $middleheadlinecolor = $mikesbar->getOption( 'message_bar_middle_headline_color' );
@@ -195,9 +205,16 @@ $middleicon = $mikesbar->getOption( 'middle_container_icon' );
 if( wp_get_attachment_url( $middleicon ) ) {
 	$middleicon = wp_get_attachment_url( $middleicon );
 	} else {
-	$middleicon = plugins_url('/assets/img/svg-bar-call.svg', __FILE__);
+	$middleicon = plugins_url('/assets/img/svg-bar-schedule.svg', __FILE__);
 	}
 $middlelink = $mikesbar->getOption( 'middle_container_link' );
+if( $middlelink ) {
+	$middlelink_output = 'href="'.$middlelink.'"';
+	} else {
+	$middlelink_output = "onclick='event.preventDefault()'";	
+	}
+
+
 //Right Options
 $rightheadline = $mikesbar->getOption( 'message_bar_right_headline' );
 $rightheadlinecolor = $mikesbar->getOption( 'message_bar_right_headline_color' );
@@ -205,24 +222,28 @@ $righticon = $mikesbar->getOption( 'right_container_icon' );
 if( wp_get_attachment_url( $righticon ) ) {
 	$righticon = wp_get_attachment_url( $righticon );
 	} else {
-	$righticon = plugins_url('/assets/img/svg-bar-call.svg', __FILE__);
+	$righticon = plugins_url('/assets/img/svg-bar-reviews.svg', __FILE__);
 	}
 $rightlink = $mikesbar->getOption( 'right_container_link' );
-
+if( $rightlink ) {
+	$rightlink_output = 'href="'.$rightlink.'"';
+	} else {
+	$rightlink_output = "onclick='event.preventDefault()'";	
+	}
 	ob_start(); ?>
 
 		<div id="mikes-message-bar" style="background-color:<?php echo $bgcolor; ?>">
 			<div id="message-bar-inner-container">
 				<div id="left-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
-					<a class="container-link" href="<?php echo $leftlink; ?>"><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
+					<a class="container-link" <?php echo $leftlink_output; ?>><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
 					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a>
 				</div>
 				<div id="middle-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
-					<a class="container-link" href="<?php echo $middlelink; ?>"><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
+					<a class="container-link" <?php echo $middlelink_output; ?>><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
 					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a>
 				</div>
 				<div id="right-bar-container">
-					<a class="container-link" href="<?php echo $rightlink; ?>"><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
+					<a class="container-link" <?php echo $rightlink_output; ?>><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
 					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a>
 				</div>
 			</div>
