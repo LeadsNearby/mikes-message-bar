@@ -10,14 +10,14 @@
     display:none;
 }
 @media screen and (max-width:800px) {
-	#mikes-message-bar {
-		display:flex !important;
-	}
+    #mikes-message-bar {
+        display:flex !important;
+    }
 }
 @media screen and (min-width:801px) and (max-width:1024px) {
-	#mikes-message-bar {
-		display:flex !important;
-	}
+    #mikes-message-bar {
+        display:flex !important;
+    }
 }
 
 #message-bar-inner-container {
