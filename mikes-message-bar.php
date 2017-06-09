@@ -241,15 +241,15 @@ if( $rightlink ) {
 		<div id="mikes-message-bar" style="background-color:<?php echo $bgcolor; ?>">
 			<div id="message-bar-inner-container">
 				<div id="left-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
-					<a class="container-link" <?php echo $leftlink_output; ?>><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
+					<a id="message-button-left" class="container-link" <?php echo $leftlink_output; ?>><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
 					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a>
 				</div>
 				<div id="middle-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
-					<a class="container-link" <?php echo $middlelink_output; ?>><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
+					<a id="message-button-middle" class="container-link" <?php echo $middlelink_output; ?>><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
 					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a>
 				</div>
 				<div id="right-bar-container">
-					<a class="container-link" <?php echo $rightlink_output; ?>><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
+					<a id="message-button-right" class="container-link" <?php echo $rightlink_output; ?>><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
 					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a>
 				</div>
 			</div>
