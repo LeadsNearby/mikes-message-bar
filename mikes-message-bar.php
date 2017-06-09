@@ -9,6 +9,22 @@ Author URI: http://leadsnearby.com/
 License: GPLv2 or later
 */
 
+//Enqueue CSS
+function load_custom_wp_admin_style($hook) {
+        // Load only on ?page=mypluginname
+        if($hook != 'toplevel_page_mikes-message-bar-options') {
+                return;
+        }
+        wp_enqueue_style( 'mikes_message_bar_admin_css', plugins_url('assets/css/mikes-message-bar-admin.css', __FILE__) );
+}
+add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+
+//Enqueue JS
+
+function load_mikes_message_bar_js() {
+        wp_enqueue_script( 'mikes_message_bar_js', plugins_url('mikes-message-bar.js', __FILE__) );
+}
+add_action( 'wp_footer', 'load_mikes_message_bar_js' );
 
 //Include Titan Framework
 require_once( 'titan-framework/titan-framework-embedder.php' );
@@ -20,24 +36,120 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 //Create Admin Panel
 	$panel = $titan->createAdminPanel( array(
 		'name' => 'Mikes Message Bar Options',
-	) );
+	) ); 
+$panel->createOption( array(
+'type' => 'custom',
+'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Welcome to the best message bar plugin on the planet! I pity those who don\'t use Mike\'s Message Bar.</p>',
+) );
+
 //Create Admin Options
 	$panel->createOption( array(
-		'name' => 'Message Bar Headline',
-		'id' => 'my_text_option',
-		'type' => 'text',
-		'desc' => 'Your Call to Action'
-		) );
-	$panel->createOption( array(
 		'name' => 'Message Bar Background Color',
-		'id' => 'background_color',
+		'id' => 'message_bar_background_color',
 		'type' => 'color',
 		'desc' => 'Pick a color',
-		'default' => '#555555',
+		'default' => '#000',
+		'alpha' => 'true',
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Separator Color',
+		'id' => 'message_bar_separator_color',
+		'type' => 'color',
+		'desc' => 'Pick a color',
+		'default' => '#fff',
+		'alpha' => 'true',
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Headline Font Size',
+		'id' => 'message_bar_headline_font_size',
+		'type' => 'text',
+		'desc' => 'Choose Font Size',
+		'default' => '20px',		
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Left Headline',
+		'id' => 'message_bar_left_headline',
+		'type' => 'text',
+		'desc' => 'Your Call to Action'		
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Left Headline Color',
+		'id' => 'message_bar_left_headline_color',
+		'type' => 'color',
+		'desc' => 'Pick a color',
+		'default' => '#fff',
+		'alpha' => 'true',
+		) );
+	$panel->createOption( array(
+		'name' => 'Left Container Icon',
+		'id' => 'left_container_icon',
+		'type' => 'file',
+		'desc' => 'Upload Your Icon (Optimal Dimensions:45 pixels x 45 pixels)',
 	) );
-		$panel->createOption( array(
+	$panel->createOption( array(
+		'name' => 'Left Container Link',
+		'id' => 'left_container_link',
+		'type' => 'text',
+		'desc' => 'Button Link'		
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Middle Headline',
+		'id' => 'message_bar_middle_headline',
+		'type' => 'text',
+		'desc' => 'Your Call to Action'
+		
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Middle Headline Color',
+		'id' => 'message_bar_middle_headline_color',
+		'type' => 'color',
+		'desc' => 'Pick a color',
+		'default' => '#fff',
+		'alpha' => 'true',
+		) );
+	$panel->createOption( array(
+		'name' => 'Middle Container Icon',
+		'id' => 'middle_container_icon',
+		'type' => 'file',
+		'desc' => 'Upload Your Icon',
+	) );
+	$panel->createOption( array(
+		'name' => 'Middle Container Link',
+		'id' => 'middle_container_link',
+		'type' => 'text',
+		'desc' => 'Button Link'		
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Right Headline',
+		'id' => 'message_bar_right_headline',
+		'type' => 'text',
+		'desc' => 'Your Call to Action'
+		
+		) );
+	$panel->createOption( array(
+		'name' => 'Message Bar Right Headline Color',
+		'id' => 'message_bar_right_headline_color',
+		'type' => 'color',
+		'desc' => 'Pick a color',
+		'default' => '#fff',
+		'alpha' => 'true',
+		) );
+	$panel->createOption( array(
+		'name' => 'Right Container Icon',
+		'id' => 'right_container_icon',
+		'type' => 'file',
+		'desc' => 'Upload Your Icon',
+	) );
+	$panel->createOption( array(
+		'name' => 'Right Container Link',
+		'id' => 'right_container_link',
+		'type' => 'text',
+		'desc' => 'Button Link'		
+		) );
+	$panel->createOption( array(
 		'type' => 'save'
 	) );
+
 
 
 //Get Saved Options
@@ -50,8 +162,77 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		// Do stuff here
 	}
 
+//Create Bar
+add_action( 'wp_footer', 'mikes_message_bar' );
 
+function load_mikes_message_bar_style() {
+        wp_enqueue_style( 'mikes_message_bar_css', plugins_url('mikes-message-bar.css', __FILE__) );
+}
+add_action( 'wp_enqueue_scripts', 'load_mikes_message_bar_style' );
 
+function mikes_message_bar() {
+$mikesbar = TitanFramework::getInstance( 'mikes_message_bar' );
+
+//General Options
+$bgcolor = $mikesbar->getOption( 'message_bar_background_color' );
+$headlinefontsize = $mikesbar->getOption( 'message_bar_headline_font_size' );
+$separatorcolor = $mikesbar->getOption( 'message_bar_separator_color' );
+
+//Left Options
+$leftheadline = $mikesbar->getOption( 'message_bar_left_headline' );
+$leftheadlinecolor = $mikesbar->getOption( 'message_bar_left_headline_color' );
+$lefticon = $mikesbar->getOption( 'left_container_icon' );
+if( wp_get_attachment_url( $lefticon ) ) {
+	$lefticon = wp_get_attachment_url( $lefticon );
+	} else {
+	$lefticon = plugins_url('/assets/img/svg-bar-call.svg', __FILE__);
+	}
+$leftlink = $mikesbar->getOption( 'left_container_link' );
+//Middle Options
+$middleheadline = $mikesbar->getOption( 'message_bar_middle_headline' );
+$middleheadlinecolor = $mikesbar->getOption( 'message_bar_middle_headline_color' );
+$middleicon = $mikesbar->getOption( 'middle_container_icon' );
+if( wp_get_attachment_url( $middleicon ) ) {
+	$middleicon = wp_get_attachment_url( $middleicon );
+	} else {
+	$middleicon = plugins_url('/assets/img/svg-bar-call.svg', __FILE__);
+	}
+$middlelink = $mikesbar->getOption( 'middle_container_link' );
+//Right Options
+$rightheadline = $mikesbar->getOption( 'message_bar_right_headline' );
+$rightheadlinecolor = $mikesbar->getOption( 'message_bar_right_headline_color' );
+$righticon = $mikesbar->getOption( 'right_container_icon' );
+if( wp_get_attachment_url( $righticon ) ) {
+	$righticon = wp_get_attachment_url( $righticon );
+	} else {
+	$righticon = plugins_url('/assets/img/svg-bar-call.svg', __FILE__);
+	}
+$rightlink = $mikesbar->getOption( 'right_container_link' );
+
+	ob_start(); ?>
+
+		<div id="mikes-message-bar" style="background-color:<?php echo $bgcolor; ?>">
+			<div id="message-bar-inner-container">
+				<div id="left-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
+					<a class="container-link" href="<?php echo $leftlink; ?>"><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
+					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a>
+				</div>
+				<div id="middle-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
+					<a class="container-link" href="<?php echo $middlelink; ?>"><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
+					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a>
+				</div>
+				<div id="right-bar-container">
+					<a class="container-link" href="<?php echo $rightlink; ?>"><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
+					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a>
+				</div>
+			</div>
+		</div>
+
+	<?php $html = ob_get_clean();
+
+	echo $html;
+
+}
 
 
 

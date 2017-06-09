@@ -1,0 +1,11 @@
+.row-1 {
+     background:none !important;
+     
+}
+.row-1 .tf-custom {
+     border:none !important;
+     width:50%;
+}
+.form-table td p, .form-table th {
+    font-size: 20px;
+}
