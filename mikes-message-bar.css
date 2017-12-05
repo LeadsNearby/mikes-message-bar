@@ -9,6 +9,10 @@
     padding:20px;
     display:none;
 }
+.static {
+ 	display:block !important;
+	position:fixed;
+}
 @media screen and (max-width:800px) {
     #mikes-message-bar {
         display:flex !important;
