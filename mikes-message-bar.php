@@ -50,6 +50,13 @@ $panel->createOption( array(
 
 //Create Admin Options
 	$panel->createOption( array(
+		'name' => 'Static Bar Option',
+		'id' => 'static_option',
+		'type' => 'checkbox',
+		'desc' => 'By default the bar appears on scroll. Checking this box will make the bar visible at all times.',
+		'default' => false,
+		) );
+	$panel->createOption( array(
 		'name' => 'Message Bar Background Color',
 		'id' => 'message_bar_background_color',
 		'type' => 'color',
@@ -97,15 +104,28 @@ $panel->createOption( array(
 		'name' => 'Left Container Link',
 		'id' => 'left_container_link',
 		'type' => 'text',
-		'desc' => 'Button Link'		
+		'desc' => 'Button Link'	
+		) );
+	$panel->createOption( array(
+		'name' => 'Left Container Apex Chat Option',
+		'id' => 'left_apex_chat',
+		'type' => 'checkbox',
+		'desc' => 'Click here to use Apex Chat',
+		'default' => false,
+		) );
+	$panel->createOption( array(
+		'name' => 'Left Apex ID',
+		'id' => 'left_apex_id',
+		'type' => 'text',
+		'desc' => 'Your Apex Chat ID',
+		'default' => ''	
 		) );
 	$panel->createOption( array(
 		'name' => 'Message Bar Middle Headline',
 		'id' => 'message_bar_middle_headline',
 		'type' => 'text',
 		'desc' => 'Your Call to Action',
-		'default' => 'Schedule Now'
-		
+		'default' => 'Schedule Now'	
 		) );
 	$panel->createOption( array(
 		'name' => 'Message Bar Middle Headline Color',
@@ -126,6 +146,20 @@ $panel->createOption( array(
 		'id' => 'middle_container_link',
 		'type' => 'text',
 		'desc' => 'Button Link'		
+		) );
+	$panel->createOption( array(
+		'name' => 'Middle Container Apex Chat Option',
+		'id' => 'middle_apex_chat',
+		'type' => 'checkbox',
+		'desc' => 'Click here to use Apex Chat',
+		'default' => false,
+		) );
+	$panel->createOption( array(
+		'name' => 'Middle Apex ID',
+		'id' => 'middle_apex_id',
+		'type' => 'text',
+		'desc' => 'Your Apex Chat ID',
+		'default' => ''	
 		) );
 	$panel->createOption( array(
 		'name' => 'Message Bar Right Headline',
@@ -154,6 +188,20 @@ $panel->createOption( array(
 		'id' => 'right_container_link',
 		'type' => 'text',
 		'desc' => 'Button Link'		
+		) );
+	$panel->createOption( array(
+		'name' => 'Right Container Apex Chat Option',
+		'id' => 'right_apex_chat',
+		'type' => 'checkbox',
+		'desc' => 'Click here to use Apex Chat',
+		'default' => false,
+		) );
+	$panel->createOption( array(
+		'name' => 'Right Apex ID',
+		'id' => 'right_apex_id',
+		'type' => 'text',
+		'desc' => 'Your Apex Chat ID',
+		'default' => ''	
 		) );
 	$panel->createOption( array(
 		'type' => 'save'
@@ -186,11 +234,16 @@ $mikesbar = TitanFramework::getInstance( 'mikes_message_bar' );
 $bgcolor = $mikesbar->getOption( 'message_bar_background_color' );
 $headlinefontsize = $mikesbar->getOption( 'message_bar_headline_font_size' );
 $separatorcolor = $mikesbar->getOption( 'message_bar_separator_color' );
+$static = $mikesbar->getOption( 'static_option' );
+
+	
 
 //Left Options
 $leftheadline = $mikesbar->getOption( 'message_bar_left_headline' );
 $leftheadlinecolor = $mikesbar->getOption( 'message_bar_left_headline_color' );
 $lefticon = $mikesbar->getOption( 'left_container_icon' );
+$leftchat = $mikesbar->getOption( 'left_apex_chat' );
+$leftchatid = $mikesbar->getOption( 'left_apex_id' );
 if( wp_get_attachment_url( $lefticon ) ) {
 	$lefticon = wp_get_attachment_url( $lefticon );
 	} else {
@@ -208,6 +261,8 @@ if( $leftlink ) {
 $middleheadline = $mikesbar->getOption( 'message_bar_middle_headline' );
 $middleheadlinecolor = $mikesbar->getOption( 'message_bar_middle_headline_color' );
 $middleicon = $mikesbar->getOption( 'middle_container_icon' );
+$middlechat = $mikesbar->getOption( 'middle_apex_chat' );
+$middlechatid = $mikesbar->getOption( 'middle_apex_id' );
 if( wp_get_attachment_url( $middleicon ) ) {
 	$middleicon = wp_get_attachment_url( $middleicon );
 	} else {
@@ -225,6 +280,8 @@ if( $middlelink ) {
 $rightheadline = $mikesbar->getOption( 'message_bar_right_headline' );
 $rightheadlinecolor = $mikesbar->getOption( 'message_bar_right_headline_color' );
 $righticon = $mikesbar->getOption( 'right_container_icon' );
+$rightchat = $mikesbar->getOption( 'right_apex_chat' );
+$rightchatid = $mikesbar->getOption( 'right_apex_id' );
 if( wp_get_attachment_url( $righticon ) ) {
 	$righticon = wp_get_attachment_url( $righticon );
 	} else {
@@ -238,19 +295,34 @@ if( $rightlink ) {
 	}
 	ob_start(); ?>
 
-		<div id="mikes-message-bar" style="background-color:<?php echo $bgcolor; ?>">
+		<div id="mikes-message-bar" class="<?php if($static == true) { ?> static <?php } ?>"style="background-color:<?php echo $bgcolor; ?>">
 			<div id="message-bar-inner-container">
 				<div id="left-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
+					<?php if($leftchat == true) { ?>
+						<a id="message-button-left" target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $leftchatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
+					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a> <?php } else { ?>
+	 
 					<a id="message-button-left" class="container-link" <?php echo $leftlink_output; ?>><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span>
 					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a>
+	<?php } ?>
 				</div>
 				<div id="middle-bar-container" style="border-right:1px solid <?php echo $separatorcolor; ?>">
+					<?php if($middlechat == true) { ?>
+						<a id="message-button-middle" target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $middlechatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
+					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a> <?php } else { ?>
+	 
 					<a id="message-button-middle" class="container-link" <?php echo $middlelink_output; ?>><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span>
 					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a>
+	<?php } ?>
 				</div>
 				<div id="right-bar-container">
+					<?php if($rightchat == true) { ?>
+						<a id="message-button-right" target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $rightchatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
+					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a> <?php } else { ?>
+	 
 					<a id="message-button-right" class="container-link" <?php echo $rightlink_output; ?>><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span>
 					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a>
+	<?php } ?>
 				</div>
 			</div>
 		</div>
