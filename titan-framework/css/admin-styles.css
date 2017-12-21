@@ -122,7 +122,7 @@
 
 .titan-framework-panel-wrap .form-table tr {
 	background: white;
-	border-bottom: 1px solid #eee;
+	border-bottom:none;
 }
 
 .titan-framework-panel-wrap .form-table .wp_themeSkin .mceStatusbar { padding: 0 0 0 8px; }

@@ -60,6 +60,12 @@
 .left-icon, .middle-icon, .right-icon {
     margin-right:2%;
 }
+.fa-icon {
+    margin-right:2%;
+}
+.container-link:hover {
+    color: var(--headline-hover) !important;
+}
 
 @media screen and (max-width:800px) {
     .message-bar-left-headline, .message-bar-middle-headline, .message-bar-right-headline {
