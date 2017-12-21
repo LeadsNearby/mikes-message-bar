@@ -3,7 +3,7 @@
 Plugin URI: http://leadsnearby.com/
 Description: Creates the most amazing fixed message bar in the world without slowing down your site.
 
-Version: 2.0.0
+Version: 2.0.2
 Author: Michael Layao
 Author URI: http://leadsnearby.com/
 License: GPLv2 or later
