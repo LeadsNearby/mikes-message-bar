@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
    if( $('#mikes-message-bar' ).hasClass ( 'static' )) {
+	$('.fusion-footer').css('padding-bottom', $('#mikes-message-bar').outerHeight() );
 	return;
 	}
     $(window).on('load scroll resize', function() {
