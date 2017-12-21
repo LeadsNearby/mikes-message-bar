@@ -88,7 +88,7 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'id' => 'message_bar_headline_color',
 		'type' => 'color',
 		'desc' => 'Choose the color of your message bar text.',
-		'default' => '#dd3333',
+		'default' => '#fff',
 		'alpha' => 'true',
 		) ); 
 	$generalTab->createOption( array(
@@ -96,7 +96,7 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'id' => 'message_bar_headline_hover',
 		'type' => 'color',
 		'desc' => 'Choose the color of your message bar text on hover.',
-		'default' => '#81d742',
+		'default' => '#fff',
 		'alpha' => 'true',
 		) );
 	$generalTab->createOption( array(
