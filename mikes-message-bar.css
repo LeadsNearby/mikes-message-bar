@@ -62,7 +62,7 @@
 }
 .fa-icon {
     margin-right:2%;
-    font-size:45px;
+    font-size:45px !important;
 }
 .container-link:hover {
     color: var(--headline-hover) !important;
