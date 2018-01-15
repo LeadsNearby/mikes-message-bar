@@ -3,7 +3,7 @@
 Plugin URI: http://leadsnearby.com/
 Description: Creates the most amazing fixed message bar in the world without slowing down your site.
 
-Version: 2.0.3
+Version: 2.0.4
 Author: Michael Layao
 Author URI: http://leadsnearby.com/
 License: GPLv2 or later
@@ -67,6 +67,13 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'type' => 'checkbox',
 		'desc' => 'By default the bar appears on scroll. Checking this box will make the bar visible at all times.',
 		'default' => false,
+		) );
+	$generalTab->createOption( array(
+		'name' => 'Message Bar Z-Index',
+		'id' => 'message_bar_z_index',
+		'type' => 'text',
+		'desc' => 'Choose the Z-Index',
+		'default' => '9999999999999999',		
 		) );
 	$generalTab->createOption( array(
 		'name' => 'Message Bar Background Color',
@@ -315,6 +322,7 @@ $headlinefontsize = $mikesbar->getOption( 'message_bar_headline_font_size' );
 $static = $mikesbar->getOption( 'static_option' );
 $headlinecolor = $mikesbar->getOption( 'message_bar_headline_color');
 $headlinehover = $mikesbar->getOption( 'message_bar_headline_hover');
+$zindex = $mikesbar->getOption( 'message_bar_z_index');
 
 	
 
@@ -378,7 +386,7 @@ if( $rightlink ) {
 	}
 	ob_start(); ?>
 
-		<div id="mikes-message-bar" class="<?php if($static == true) { ?> static <?php } ?>"style="background-color:<?php echo $bgcolor; ?>">
+		<div id="mikes-message-bar" class="<?php if($static == true) { ?> static <?php } ?>"style="background-color:<?php echo $bgcolor; ?>; z-index:<?php echo $zindex; ?>">
 			<div id="message-bar-inner-container">
 				<div id="left-bar-container" style="border-right:1px solid <?php echo $headlinecolor; ?>">
 					<?php if($leftchat == true) { ?>
