@@ -72,4 +72,13 @@
     .message-bar-left-headline, .message-bar-middle-headline, .message-bar-right-headline {
         display:none;
     }
+	#livechat-compact-container {
+		bottom:85px !important;
+	}
+	#livechat-eye-catcher {
+		bottom:119px !important;
+	}
+	#mobile_invitation_container {
+		bottom:85px !important;
+	}
 }
