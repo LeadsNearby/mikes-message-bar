@@ -1,9 +1,9 @@
 <?php
-/* Plugin Name: Mikes Message Bar
+/* Plugin Name: Mikes Juicy Button Bar
 Plugin URI: http://leadsnearby.com/
 Description: Creates the most amazing fixed message bar in the world without slowing down your site.
 
-Version: 2.0.5
+Version: 2.0.6
 Author: Michael Layao
 Author URI: http://leadsnearby.com/
 License: GPLv2 or later
@@ -15,10 +15,8 @@ if ( is_admin() ) {
     new GitHubPluginUpdater( __FILE__, 'LeadsNearby', "mikes-message-bar" );
 }
 //Enqueue Font Awesome
-function register_font_awesome() {
-	wp_register_style( 'font_awesome', plugins_url( 'assets/css/font-awesome-4.7.0/css/font-awesome.min.css', __FILE__ ) );
-	wp_enqueue_style( 'font_awesome' );
-}
+	wp_register_script( 'font_awesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js', null, null, true );
+	wp_enqueue_script('font_awesome');
 
 //Enqueue CSS
 function load_custom_wp_admin_style($hook) {
@@ -46,7 +44,7 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 	$titan = TitanFramework::getInstance( 'mikes_message_bar' );
 //Create Admin Panel
 	$panel = $titan->createAdminPanel( array(
-		'name' => 'Mikes Message Bar Options',
+		'name' => 'Mikes Juicy Button Bar Options',
 	) ); 
 
 
@@ -148,8 +146,8 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'name' => 'Left Container Font Awesome Class',
 		'id' => 'left_font_awesome_class',
 		'type' => 'text',
-		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fa-calendar". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
-		'default' => 'fa-phone',		
+		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fas fa-phone-volume". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
+		'default' => 'fas fa-phone-volume',		
 	) );
 
 	$leftTab->createOption( array(
@@ -207,8 +205,8 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'name' => 'Middle Container Font Awesome Class',
 		'id' => 'middle_font_awesome_class',
 		'type' => 'text',
-		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fa-calendar". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
-		'default' => 'fa-calendar',		
+		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"far fa-calendar-alt". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
+		'default' => 'far fa-calendar-alt',		
 	) );
 	$middleTab->createOption( array(
 		'name' => 'Middle Container Link',
@@ -266,8 +264,8 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'name' => 'Right Container Font Awesome Class',
 		'id' => 'right_font_awesome_class',
 		'type' => 'text',
-		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fa-calendar". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
-		'default' => 'fa-star',		
+		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fas fa-star". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
+		'default' => 'fas fa-star',		
 	) );
 	$rightTab->createOption( array(
 		'name' => 'Right Container Link',
@@ -390,28 +388,28 @@ if( $rightlink ) {
 			<div id="message-bar-inner-container">
 				<div id="left-bar-container" style="border-right:1px solid <?php echo $headlinecolor; ?>">
 					<?php if($leftchat == true) { ?>
-						<a id="message-button-left" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $leftchatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><?php if($leftfaoption == true) { ?><i class="fa-icon fa <?php echo $leftfaclass; ?>" style="width:45px; font-size:40px" aria-hidden="true"></i><?php } else { ?><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span> <?php } ?>
+						<a id="message-button-left" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $leftchatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><?php if($leftfaoption == true) { ?><i class="<?php echo $leftfaclass; ?>" style="width:45px; font-size:40px; margin-right:2%;" aria-hidden="true"></i><?php } else { ?><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span> <?php } ?>
 					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a> <?php } else { ?>
 	 
-					<a id="message-button-left" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; "  class="container-link" <?php echo $leftlink_output; ?>><?php if($leftfaoption == true) { ?><i class="fa-icon fa <?php echo $leftfaclass; ?>" aria-hidden="true"></i><?php } else { ?><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span> <?php } ?>
+					<a id="message-button-left" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; "  class="container-link" <?php echo $leftlink_output; ?>><?php if($leftfaoption == true) { ?><i class="<?php echo $leftfaclass; ?>" style="width:45px; font-size:40px; margin-right:2%;" aria-hidden="true"></i><?php } else { ?><span class="left-icon"><img width="45px" height="45px" src="<?php echo $lefticon; ?>"></span> <?php } ?>
 					<span class="message-bar-left-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $leftheadlinecolor; ?>"><?php echo $leftheadline; ?></span></a>
 	<?php } ?>
 				</div>
 				<div id="middle-bar-container" style="border-right:1px solid <?php echo $headlinecolor; ?>">
 					<?php if($middlechat == true) { ?>
-						<a id="message-button-middle" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $middlechatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><?php if($middlefaoption == true) { ?><i class="fa-icon fa <?php echo $middlefaclass; ?>" style="width:45px; font-size:40px" aria-hidden="true"></i><?php } else { ?><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span> <?php } ?>
+						<a id="message-button-middle" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $middlechatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><?php if($middlefaoption == true) { ?><i class="<?php echo $middlefaclass; ?>" style="width:45px; font-size:40px; margin-right:2%;" aria-hidden="true"></i><?php } else { ?><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span> <?php } ?>
 					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a> <?php } else { ?>
 	 
-					<a id="message-button-middle" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " class="container-link" <?php echo $middlelink_output; ?>><?php if($middlefaoption == true) { ?><i class="fa-icon fa <?php echo $middlefaclass; ?>" style="width:45px; font-size:40px" aria-hidden="true"></i><?php } else { ?><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span> <?php } ?>
+					<a id="message-button-middle" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " class="container-link" <?php echo $middlelink_output; ?>><?php if($middlefaoption == true) { ?><i class="<?php echo $middlefaclass; ?>" style="width:45px; font-size:40px; margin-right:2%;" aria-hidden="true"></i><?php } else { ?><span class="middle-icon"><img width="45px" height="45px" src="<?php echo $middleicon; ?>"></span> <?php } ?>
 					<span class="message-bar-middle-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $middleheadlinecolor; ?>"><?php echo $middleheadline; ?></span></a>
 	<?php } ?>
 				</div>
 				<div id="right-bar-container">
 					<?php if($rightchat == true) { ?>
-						<a id="message-button-right" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $rightchatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><?php if($rightfaoption == true) { ?><i class="fa-icon fa <?php echo $rightfaclass; ?>" style="width:45px; font-size:40px" aria-hidden="true"></i><?php } else { ?><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span> <?php } ?>
+						<a id="message-button-right" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " target="blank" onclick="window.open('http://www.leadsnearbychat.com/pages/chat.aspx?companyId=<?php echo $rightchatid; ?>&amp;requestedAgentId=25&originalReferrer='+document.referrer+'&referrer='+window.location.href,'','width=500,height=600');" class="container-link" href=""><?php if($rightfaoption == true) { ?><i class="<?php echo $rightfaclass; ?>" style="width:45px; font-size:40px; margin-right:2%;" aria-hidden="true"></i><?php } else { ?><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span> <?php } ?>
 					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a> <?php } else { ?>
 	 
-					<a id="message-button-right" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " class="container-link" <?php echo $rightlink_output; ?>><?php if($rightfaoption == true) { ?><i class="fa-icon fa <?php echo $rightfaclass; ?>" style="width:45px; font-size:45px" aria-hidden="true"></i><?php } else { ?><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span> <?php } ?>
+					<a id="message-button-right" style="color:<?php echo $headlinecolor; ?>; --headline-hover:<?php echo $headlinehover; ?>; " class="container-link" <?php echo $rightlink_output; ?>><?php if($rightfaoption == true) { ?><i class="<?php echo $rightfaclass; ?>" style="width:45px; font-size:40px; margin-right:2%;" aria-hidden="true"></i><?php } else { ?><span class="right-icon"><img width="45px" height="45px" src="<?php echo $righticon; ?>"></span> <?php } ?>
 					<span class="message-bar-right-headline" style="font-size:<?php echo $headlinefontsize; ?>; color:<?php echo $rightheadlinecolor; ?>"><?php echo $rightheadline; ?></span></a>
 	<?php } ?>
 				</div>
