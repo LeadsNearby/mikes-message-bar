@@ -57,7 +57,7 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
     ) );
 	$generalTab->createOption( array(
         'type' => 'custom',
-        'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Welcome to the best message bar plugin on the planet! I pity those who don\'t use Mike\'s Message Bar. Let\'s get started with your general message bar settings below. </p>',
+        'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Welcome to the best button bar plugin on the planet! I pity those who don\'t use Mike\'s Juicy Button Bar. Let\'s get started with your general button bar settings below. </p>',
     ) );
 	$generalTab->createOption( array(
 		'name' => 'Static Bar Option',
@@ -67,40 +67,40 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		'default' => false,
 		) );
 	$generalTab->createOption( array(
-		'name' => 'Message Bar Z-Index',
+		'name' => 'Button Bar Z-Index',
 		'id' => 'message_bar_z_index',
 		'type' => 'text',
 		'desc' => 'Choose the Z-Index',
 		'default' => '9999999999999999',		
 		) );
 	$generalTab->createOption( array(
-		'name' => 'Message Bar Background Color',
+		'name' => 'Button Bar Background Color',
 		'id' => 'message_bar_background_color',
 		'type' => 'color',
-		'desc' => 'Choose the background color for your message bar.',
+		'desc' => 'Choose the background color for your button bar.',
 		'default' => '#000',
 		'alpha' => 'true',
 		) ); 
 	$generalTab->createOption( array(
-		'name' => 'Message Bar Headline Font Size',
+		'name' => 'Button Bar Text Font Size',
 		'id' => 'message_bar_headline_font_size',
 		'type' => 'text',
-		'desc' => 'Choose the font size of your message bar text.',
+		'desc' => 'Choose the font size of your button bar text.',
 		'default' => '20px',		
 		) );
 	$generalTab->createOption( array(
-		'name' => 'Headline Color',
+		'name' => 'Text Color',
 		'id' => 'message_bar_headline_color',
 		'type' => 'color',
-		'desc' => 'Choose the color of your message bar text.',
+		'desc' => 'Choose the color of your button bar text.',
 		'default' => '#fff',
 		'alpha' => 'true',
 		) ); 
 	$generalTab->createOption( array(
-		'name' => 'Headline Hover Color',
+		'name' => 'Text Hover Color',
 		'id' => 'message_bar_headline_hover',
 		'type' => 'color',
-		'desc' => 'Choose the color of your message bar text on hover.',
+		'desc' => 'Choose the color of your button bar text on hover.',
 		'default' => '#fff',
 		'alpha' => 'true',
 		) );
@@ -116,55 +116,55 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 	//LEFT CONTAINER TAB
 	
 	$leftTab = $panel->createTab( array(
-        'name' => 'Left Container Options',
+        'name' => 'Left Button Options',
     ) );
     $leftTab->createOption( array(
         'type' => 'custom',
         'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Here is where you choose your options for the left message bar container.</p>',
     ) );
 	$leftTab->createOption( array(
-		'name' => 'Message Bar Left Headline',
+		'name' => 'Left Button Text',
 		'id' => 'message_bar_left_headline',
 		'type' => 'text',
 		'desc' => 'Your Call to Action',
 		'default' => '(919)758-8420'		
 		) );
 	$leftTab->createOption( array(
-		'name' => 'Left Container Icon',
+		'name' => 'Left Button Image Icon',
 		'id' => 'left_container_icon',
 		'type' => 'file',
 		'desc' => 'Upload Your Icon (Optimal Dimensions:45 pixels x 45 pixels)',
 	) );
 	$leftTab->createOption( array(
-		'name' => 'Left Container Font Awesome Icon',
+		'name' => 'Left Button Font Awesome Icon',
 		'id' => 'left_font_awesome_option',
 		'type' => 'checkbox',
 		'desc' => 'Click here to use a Font Awesome Icon.',
 		'default' => true,
 		) );
 	$leftTab->createOption( array(
-		'name' => 'Left Container Font Awesome Class',
+		'name' => 'Left Button Font Awesome Class',
 		'id' => 'left_font_awesome_class',
 		'type' => 'text',
-		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fas fa-phone-volume". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
+		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fas fa-phone-volume". For the full list of icons click here -> <a href="https://fontawesome.com/icons?d=gallery" target="_blank">https://fontawesome.com/icons?d=gallery</a>',
 		'default' => 'fas fa-phone-volume',		
 	) );
 
 	$leftTab->createOption( array(
-		'name' => 'Left Container Link',
+		'name' => 'Left Button Link',
 		'id' => 'left_container_link',
 		'type' => 'text',
 		'desc' => 'Button Link'	
 		) );
 	$leftTab->createOption( array(
-		'name' => 'Left Container Apex Chat Option',
+		'name' => 'Left Button Apex Chat Option',
 		'id' => 'left_apex_chat',
 		'type' => 'checkbox',
 		'desc' => 'Click here to use Apex Chat',
 		'default' => false,
 		) );
 	$leftTab->createOption( array(
-		'name' => 'Left Apex ID',
+		'name' => 'Left Button Apex Chat ID',
 		'id' => 'left_apex_id',
 		'type' => 'text',
 		'desc' => 'Your Apex Chat ID',
@@ -174,14 +174,14 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 	//MIDDLE CONTAINER TAB
 	
 	$middleTab = $panel->createTab( array(
-        'name' => 'Middle Container Options',
+        'name' => 'Middle Button Options',
     ) );
     $middleTab->createOption( array(
         'type' => 'custom',
-        'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Would you like to see the message bar in 3D? Well you can\'t. Here is where you choose your options for the middle message bar container.</p>',
+        'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Would you like to see the button bar in 3D? Well you can\'t. Here is where you choose your options for the middle button.</p>',
     ) );
 	$middleTab->createOption( array(
-		'name' => 'Message Bar Middle Headline',
+		'name' => 'Middle Button Text',
 		'id' => 'message_bar_middle_headline',
 		'type' => 'text',
 		'desc' => 'Your Call to Action',
@@ -189,40 +189,40 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		) );
 
 	$middleTab->createOption( array(
-		'name' => 'Middle Container Icon',
+		'name' => 'Middle Button Icon',
 		'id' => 'middle_container_icon',
 		'type' => 'file',
 		'desc' => 'Upload Your Icon (Optimal Dimensions:45 pixels x 45 pixels)',
 	) );
 	$middleTab->createOption( array(
-		'name' => 'Middle Container Font Awesome Icon',
+		'name' => 'Middle Button Font Awesome Icon',
 		'id' => 'middle_font_awesome_option',
 		'type' => 'checkbox',
 		'desc' => 'Click here to use a Font Awesome Icon.',
 		'default' => true,
 		) );
 	$middleTab->createOption( array(
-		'name' => 'Middle Container Font Awesome Class',
+		'name' => 'Middle Button Font Awesome Class',
 		'id' => 'middle_font_awesome_class',
 		'type' => 'text',
-		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"far fa-calendar-alt". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
+		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"far fa-calendar-alt". For the full list of icons click here -> <a href="https://fontawesome.com/icons?d=gallery" target="_blank">https://fontawesome.com/icons?d=gallery</a>',
 		'default' => 'far fa-calendar-alt',		
 	) );
 	$middleTab->createOption( array(
-		'name' => 'Middle Container Link',
+		'name' => 'Middle Button Link',
 		'id' => 'middle_container_link',
 		'type' => 'text',
 		'desc' => 'Button Link'		
 		) );
 	$middleTab->createOption( array(
-		'name' => 'Middle Container Apex Chat Option',
+		'name' => 'Middle Button Apex Chat Option',
 		'id' => 'middle_apex_chat',
 		'type' => 'checkbox',
 		'desc' => 'Click here to use Apex Chat',
 		'default' => false,
 		) );
 	$middleTab->createOption( array(
-		'name' => 'Middle Apex ID',
+		'name' => 'Middle Button Apex Chat ID',
 		'id' => 'middle_apex_id',
 		'type' => 'text',
 		'desc' => 'Your Apex Chat ID',
@@ -232,14 +232,14 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 	//RIGHT CONTAINER TAB
 	
 	$rightTab = $panel->createTab( array(
-        'name' => 'Right Container Options',
+        'name' => 'Right Button Options',
     ) );
     $rightTab->createOption( array(
         'type' => 'custom',
-        'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Would you like a baby unicorn? So would I. But, here is where you choose the options for your right message bar container.</p>',
+        'custom' =>'<img id="big-mike" src="'.plugins_url( 'assets/img/Mike_200x200.png', __FILE__ ).'"><p>Would you like a baby unicorn? So would I. But, here is where you choose the options for your right button.</p>',
     ) );
 	$rightTab->createOption( array(
-		'name' => 'Message Bar Right Headline',
+		'name' => 'Right Button Text',
 		'id' => 'message_bar_right_headline',
 		'type' => 'text',
 		'desc' => 'Your Call to Action',
@@ -248,40 +248,40 @@ add_action( 'tf_create_options', 'mikes_message_bar_options' );
 		) );
 	
 	$rightTab->createOption( array(
-		'name' => 'Right Container Icon',
+		'name' => 'Right Button Icon',
 		'id' => 'right_container_icon',
 		'type' => 'file',
 		'desc' => 'Upload Your Icon (Optimal Dimensions:45 pixels x 45 pixels)',
 	) );
 	$rightTab->createOption( array(
-		'name' => 'Right Container Font Awesome Icon',
+		'name' => 'Right Button Font Awesome Icon',
 		'id' => 'right_font_awesome_option',
 		'type' => 'checkbox',
 		'desc' => 'Click here to use a Font Awesome Icon.',
 		'default' => true,
 		) );
 	$rightTab->createOption( array(
-		'name' => 'Right Container Font Awesome Class',
+		'name' => 'Right Button Font Awesome Class',
 		'id' => 'right_font_awesome_class',
 		'type' => 'text',
-		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fas fa-star". For the full list of icons click here -> <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>',
+		'desc' => 'Enter the class of the Font Awesome Icon you wish to use. Example:"fas fa-star". For the full list of icons click here -> <a href="https://fontawesome.com/icons?d=gallery" target="_blank">https://fontawesome.com/icons?d=gallery</a>',
 		'default' => 'fas fa-star',		
 	) );
 	$rightTab->createOption( array(
-		'name' => 'Right Container Link',
+		'name' => 'Right Button Link',
 		'id' => 'right_container_link',
 		'type' => 'text',
 		'desc' => 'Button Link'		
 		) );
 	$rightTab->createOption( array(
-		'name' => 'Right Container Apex Chat Option',
+		'name' => 'Right Button Apex Chat Option',
 		'id' => 'right_apex_chat',
 		'type' => 'checkbox',
 		'desc' => 'Click here to use Apex Chat',
 		'default' => false,
 		) );
 	$rightTab->createOption( array(
-		'name' => 'Right Apex ID',
+		'name' => 'Right Button Apex Chat ID',
 		'id' => 'right_apex_id',
 		'type' => 'text',
 		'desc' => 'Your Apex Chat ID',
