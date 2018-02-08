@@ -1,11 +1,11 @@
 <?php
 /* Plugin Name: Mikes Juicy Button Bar
-Plugin URI: http://leadsnearby.com/
+Plugin URI: https://leadsnearby.com/
 Description: Creates the most amazing fixed message bar in the world without slowing down your site.
 
 Version: 2.0.6
 Author: Michael Layao
-Author URI: http://leadsnearby.com/
+Author URI: https://leadsnearby.com/
 License: GPLv2 or later
 */
 
