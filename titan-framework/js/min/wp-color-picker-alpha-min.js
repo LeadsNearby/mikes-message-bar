@@ -495,4 +495,3 @@
 jQuery( document ).ready( function( $ ) {
 	$( '.color-picker' ).wpColorPicker();
 } );
-© 2017 GitHub, Inc.
